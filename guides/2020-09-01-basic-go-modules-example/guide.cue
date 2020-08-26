@@ -18,6 +18,8 @@ Presteps: [gitea.#PrestepNewUser & {
 	}
 }]
 
+Delims: ["{{{", "}}}"]
+
 Scenarios: go115: preguide.#Scenario & {
 	Description: "Go 1.15"
 }
@@ -28,15 +30,16 @@ Terminals: term1: preguide.#Guide.#Terminal & {
 }
 
 Steps: create_module: en: preguide.#Command & {Source: """
+echo {{ Hello }}
 mkdir \(Defs.mod1)
 cd \(Defs.mod1)
 git init
-git remote add origin https://play-with-go.dev/userguides/{{.REPO1}}.git
-go mod init play-with-go.dev/userguides/{{.REPO1}}
+git remote add origin https://play-with-go.dev/userguides/{{{.REPO1}}}.git
+go mod init play-with-go.dev/userguides/{{{.REPO1}}}
 """}
 
 Steps: create_readme: en: preguide.#Upload & {Target: Defs.mod1 + "/README.md", Source: """
-## `play-with-go.dev/userguides/{{.REPO1}}`
+## `play-with-go.dev/userguides/{{{.REPO1}}}`
 """}
 
 Steps: create_main: en: preguide.#Upload & {Target: Defs.mod1 + "/main.go", Source: """
@@ -59,6 +62,6 @@ Steps: use_module: en: preguide.#Command & {Source: """
 mkdir \(Defs.mod2)
 cd \(Defs.mod2)
 go mod init mod.com
-go get play-with-go.dev/userguides/{{.REPO1}}
-go run play-with-go.dev/userguides/{{.REPO1}}
+go get play-with-go.dev/userguides/{{{.REPO1}}}
+go run play-with-go.dev/userguides/{{{.REPO1}}}
 """}

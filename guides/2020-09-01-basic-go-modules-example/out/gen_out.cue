@@ -83,8 +83,13 @@ package out
             {
               \"Path\": \"github.com/play-with-go/preguide\",
               \"Version\": \"v0.0.0-20200907135302-1703765a167a\",
-              \"Sum\": \"h1:aYkdvQk/JikosFJXF215TkcjtifADxrskO+mr+ipxS8=\",
-              \"Replace\": null
+              \"Sum\": \"\",
+              \"Replace\": {
+                \"Path\": \"/home/myitcv/dev/learn.go.dev/preguide\",
+                \"Version\": \"\",
+                \"Sum\": \"\",
+                \"Replace\": null
+              }
             },
             {
               \"Path\": \"golang.org/x/crypto\",
@@ -127,7 +132,7 @@ package out
         """
 		Variables: ["GITEA_USERNAME", "GITEA_PASSWORD", "REPO1"]
 	}]
-	Delims: ["{{", "}}"]
+	Delims: ["{{{", "}}}"]
 	Terminals: [{
 		Name:        "term1"
 		Description: "The main terminal"
@@ -147,6 +152,14 @@ package out
 					Order:    0
 					Stmts: [{
 						Negated:  false
+						CmdStr:   "echo {{ Hello }}"
+						ExitCode: 0
+						Output: """
+        {{ Hello }}
+        
+        """
+					}, {
+						Negated:  false
 						CmdStr:   "mkdir /home/gopher/mod1"
 						ExitCode: 0
 						Output:   ""
@@ -165,15 +178,15 @@ package out
         """
 					}, {
 						Negated:  false
-						CmdStr:   "git remote add origin https://play-with-go.dev/userguides/{{.REPO1}}.git"
+						CmdStr:   "git remote add origin https://play-with-go.dev/userguides/{{{.REPO1}}}.git"
 						ExitCode: 0
 						Output:   ""
 					}, {
 						Negated:  false
-						CmdStr:   "go mod init play-with-go.dev/userguides/{{.REPO1}}"
+						CmdStr:   "go mod init play-with-go.dev/userguides/{{{.REPO1}}}"
 						ExitCode: 0
 						Output: """
-        go: creating new go.mod: module play-with-go.dev/userguides/{{.REPO1}}
+        go: creating new go.mod: module play-with-go.dev/userguides/{{{.REPO1}}}
         
         """
 					}]
@@ -187,7 +200,7 @@ package out
 					Renderer: {
 						RendererType: 1
 					}
-					Source: "## `play-with-go.dev/userguides/{{.REPO1}}`"
+					Source: "## `play-with-go.dev/userguides/{{{.REPO1}}}`"
 					Order:  1
 				}
 				create_main: {
@@ -239,7 +252,7 @@ package out
 						Output: """
         remote: . Processing 1 references        
         remote: Processed 1 references in total        
-        To https://play-with-go.dev/userguides/{{.REPO1}}.git
+        To https://play-with-go.dev/userguides/{{{.REPO1}}}.git
          * [new branch]      main -> main
         Branch 'main' set up to track remote branch 'main' from 'origin'.
         
@@ -271,16 +284,16 @@ package out
         """
 					}, {
 						Negated:  false
-						CmdStr:   "go get play-with-go.dev/userguides/{{.REPO1}}"
+						CmdStr:   "go get play-with-go.dev/userguides/{{{.REPO1}}}"
 						ExitCode: 0
 						Output: """
-        go: downloading play-with-go.dev/userguides/{{.REPO1}} v0.0.0-20060102150405-abcde12345
-        go: play-with-go.dev/userguides/{{.REPO1}} upgrade => v0.0.0-20060102150405-abcde12345
+        go: downloading play-with-go.dev/userguides/{{{.REPO1}}} v0.0.0-20060102150405-abcde12345
+        go: play-with-go.dev/userguides/{{{.REPO1}}} upgrade => v0.0.0-20060102150405-abcde12345
         
         """
 					}, {
 						Negated:  false
-						CmdStr:   "go run play-with-go.dev/userguides/{{.REPO1}}"
+						CmdStr:   "go run play-with-go.dev/userguides/{{{.REPO1}}}"
 						ExitCode: 0
 						Output: """
         Hello, world!
@@ -289,7 +302,7 @@ package out
 					}]
 				}
 			}
-			Hash: "70ac582679c4c88f9fa1359a4b7cc04f46c0f4b811d42a78c2fefb0c3be568d3"
+			Hash: "d32e245786448abc835a269768532bf48f6368033322dc496df2fc6e6d2def21"
 		}
 	}
 }

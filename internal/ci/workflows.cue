@@ -53,8 +53,11 @@ test: json.#Workflow & {
 			name: "Verify"
 			run:  "go mod verify"
 		}, {
-			name: "Re-generate"
+			name: "Re-generate guide"
 			run:  "_scripts/generateGuides.sh"
+		}, {
+			name: "Generate everything else"
+			run:  "go generate -tags contributing ./..."
 		}, {
 			name: "Tidy"
 			run:  "go mod tidy"

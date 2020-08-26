@@ -11,3 +11,5 @@ require (
 	github.com/play-with-go/preguide v0.0.0-20200907135302-1703765a167a
 	golang.org/x/sync v0.0.0-20200317015054-43a5402ce75a
 )
+
+replace github.com/play-with-go/preguide => /home/myitcv/dev/learn.go.dev/preguide

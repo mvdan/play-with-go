@@ -42,6 +42,17 @@ guideRequest.onload = function() {
 		replacements.push([guideDetails.Delims[0]+"."+parts[0]+guideDetails.Delims[1], parts[1]]);
 	}
 	replaceInText(document.querySelector("article"), replacements);
+	let dup = "data-upload-path";
+	document.querySelectorAll("["+dup+"]").forEach(function(node) {
+		// Workaround github.com/play-with-go/play-with-go/issues/44. This is the
+		// frontend half of the workaround where we decode from base64 to plain.
+		// Otherwise this would be a straight replace in the attribute value.
+		let v = atob(node.getAttribute(dup));
+		for (let r of replacements) {
+			v = v.replaceAll(r[0], r[1]);
+		}
+		node.setAttribute(dup, v);
+	});
 	for (let attr of ["data-upload-src", "data-command-src"]) {
 		document.querySelectorAll("["+attr+"]").forEach(function(node) {
 			let v = atob(node.getAttribute(attr));
