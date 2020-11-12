@@ -1,4 +1,7 @@
-## [`play-with-go.dev`](https://play-with-go.dev/)
+---
+permalink: /guides
+layout: plain
+---
 
 [`play-with-go.dev`](https://play-with-go.dev/) is a series of hands-on, interactive, browser-based guides that
 introduce the tools required to work with [the Go programming language](https://golang.org/). It is the natural next
